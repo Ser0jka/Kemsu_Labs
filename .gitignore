@@ -1,0 +1,23 @@
+# Компиляция (бинарники и объекты)
+*.o
+*.obj
+*.exe
+*.out
+*.app
+
+# Папки сборки и IDE
+bin/
+obj/
+.vscode/
+.vs/
+build/
+cmake-build-debug/
+cmake-build-release/
+
+# Временные файлы
+*.log
+*.tmp
+*.swp
+
+# macOS специфичное
+.DS_Store
