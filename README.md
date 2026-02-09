@@ -15,3 +15,5 @@
 
 ```bash
 source ./build.sh
+# или 
+./main
