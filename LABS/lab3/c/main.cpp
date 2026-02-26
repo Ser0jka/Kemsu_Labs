@@ -1,17 +1,16 @@
 #include <iostream>
 #include <windows.h>
 #include <fstream>
-#include <string>
 using namespace std;
 
 int generator(){
     ofstream fout("temp.txt");
     int count = 0;
     int n = -1;
-    cout << "Введите положительное число (0 = стоп): " << endl;
+    cout << "Введите число (0 = стоп): " << endl;
     while (n != 0){
         cin >> n;
-        if (n != 0) {
+        if (n != 0 && n % 3 == 0) {
             fout << n << "\n";
             count++;
         }
@@ -23,33 +22,32 @@ int main(){
     SetConsoleOutputCP(65001);
     
     int lenArr = generator();
-    int* bigArr = new int[lenArr];
-    int newLen = 0;
+    
+    if (lenArr == 0) {
+        cout << "\nНет чисел, кратных 3." << endl;
+        return 0;
+    }
+
+    int* arr = new int[lenArr];
 
     ifstream fin("temp.txt");
     if (fin.is_open()) {
         int num;
-        int idx = 0;
-        
         for (int i = 0; i < lenArr; i++) {
             fin >> num;
-            if (num % 3 == 0){
-                bigArr[idx] = num;
-                idx++;
-                newLen++;
-            }
+            arr[i] = num;
         }
         fin.close();
         remove("temp.txt");
     }
 
     cout << "\nМассив: [";
-    for (int i = 0; i < newLen; i++) {
+    for (int i = 0; i < lenArr; i++) {
         if (i > 0) cout << ", ";
-        cout << bigArr[i];
+        cout << arr[i];
     }
     cout << "]" << endl;
 
-    delete[] bigArr;
+    delete[] arr;
     return 0;
 }
