@@ -2,17 +2,15 @@
 #include <windows.h>
 #include "headers.hpp"
 using namespace std;
-//вариант 9. Найти количество чисел, расположенных между первым и минимальным элементами массива.
 
 int main() {
-    SetConsoleOutputCP(65001);  // Для поддержки русского языка в Windows
+    SetConsoleOutputCP(65001);
     
     int lenArr = 0;
     generator(lenArr);
 
     if (lenArr > 0) {
     int* arr = makeArray(lenArr);
-        // Читаем данные из файла
         readArrayFromFile(arr, lenArr, "temp.txt");
         int minVal = arr[0];
         int minIdx = 0;
@@ -23,7 +21,7 @@ int main() {
             }
         }
 
-        int start = 1; // Индекс после первого элемента (индекс 0)
+        int start = 1;
         int end = minIdx;
         
         if (start < end) {

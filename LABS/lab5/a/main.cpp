@@ -9,7 +9,6 @@ int main() {
     int lenMinusArr = 0;
     int lenPlusArr = 0;
     
-    // Генерируем данные в один файл "tempAll.txt"
     generator(lenMinusArr, lenPlusArr);
 
     int totalLen = lenMinusArr + lenPlusArr;
@@ -17,16 +16,13 @@ int main() {
     if (totalLen == 0) {
         cout << "\nМассив пуст." << endl;
     } else {
-        // Создаем ОДИН общий массив
         int* arr = makeArray(totalLen);
         
-        // Читаем всё в один массив
         readArrayFromFile(arr, totalLen, "tempAll.txt");
         
         cout << "\nОбщий массив: ";
         printArray(arr, totalLen);
 
-        // Работаем с отрицательными
         if (lenMinusArr == 0) {
             cout << "\nОшибка, нет отрицательных чисел." << endl;
         } else {
@@ -35,7 +31,6 @@ int main() {
             MaxMinus(arr, maxMinusNum, pos, totalLen);
         }
 
-        // Работаем с положительными
         if (lenPlusArr == 0) {
             cout << "\nОшибка, нет положительных чисел." << endl;
         } else {

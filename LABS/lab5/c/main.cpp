@@ -7,14 +7,13 @@ using namespace std;
 // положительного, и находятся левее максимального отрицательного. 
 
 int main() {
-    SetConsoleOutputCP(65001);  // Для поддержки русского языка в Windows
+    SetConsoleOutputCP(65001);
     
     int lenArr = 0;
     generator(lenArr);
 
     if (lenArr > 0) {
         int* arr = makeArray(lenArr);
-        // Читаем данные из файла
         readArrayFromFile(arr, lenArr, "temp.txt");
 
         int minPlus = 0;

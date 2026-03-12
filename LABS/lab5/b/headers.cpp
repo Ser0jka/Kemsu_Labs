@@ -29,7 +29,7 @@ void readArrayFromFile(int* arr, int size, string fileName) {
             fin >> arr[i];
         }
         fin.close();
-        remove(fileName.c_str());  // Удаляем временный файл
+        remove(fileName.c_str());
     }
 }
 

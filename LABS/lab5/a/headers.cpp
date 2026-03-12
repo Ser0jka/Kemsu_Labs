@@ -70,7 +70,6 @@ void MaxMinus(int* arr, int& maxMinusNum, int& pos, int& lenMinusArr) {
 
 void MinPlus(int* arr, int& MinPlusNum, int& pos, int& lenPlussArr) {
     bool found = false;
-    // Ищем первое положительное для инициализации
     for (int i = 0; i < lenPlussArr; i++) {
         if (arr[i] > 0) {
             MinPlusNum = arr[i];
