@@ -15,19 +15,25 @@ echo ===============================================
 :: /Fo:    - указывает, куда положить объектные файлы
 :: /I.     - путь к заголовочным файлам (текущая папка)
 
-echo [1/3] Компиляция: main.cpp...
+echo [1/4] Компиляция: main.cpp...
 cl /nologo /EHsc /c main.cpp /Fo:build/main.obj /I.
 if %errorlevel% neq 0 goto error
 
-echo [2/3] Компиляция: array.cpp...
+echo [2/4] Компиляция: array.cpp...
 cl /nologo /EHsc /c f.cpp /Fo:build/array.obj /I.
 if %errorlevel% neq 0 goto error
 
+echo [3/4] Компиляция: array.cpp...
+cl /nologo /EHsc /c block_merge.cpp /Fo:build/block_merge.obj /I.
+if %errorlevel% neq 0 goto error
+
+
+
 
 echo -----------------------------------------------
-echo [3/3] Линковка: создание program.exe...
+echo [4/4] Линковка: создание program.exe...
 :: /Fe: указывает имя и путь готового файла
-link /nologo build/main.obj build/array.obj /OUT:program.exe
+link /nologo build/main.obj build/array.obj build/block_merge.obj /OUT:program.exe
 if %errorlevel% neq 0 goto error
 
 echo ===============================================
