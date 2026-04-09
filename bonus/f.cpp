@@ -143,7 +143,7 @@ void f_new_merge_div3(int *a, int n) {
     
     while (i < n1 && j < n2) {
         if (a[i] <= a[j]) temp[k++] = a[i++];
-        else temp[k++] = a[j++];
+        else {temp[k++] = a[j++];}
     }
     while (j < n2 && l < n) {
         if (a[j] <= a[l]) temp[k++] = a[j++];
