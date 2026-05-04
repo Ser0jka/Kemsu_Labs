@@ -12,19 +12,14 @@ void f(int *a,int n,int b,int c){
 }
 
 void f_sort(int *a,int n){
-    int c,i_min_a;
-    for(int k=0;k<n;k++){
-        i_min_a=k;
-
-        for(int i=k+1;i<n;i++){
-            if( a[i] < a[i_min_a] ){
-                i_min_a=i;
-            } 
-        }  
-
-        c=a[k];
-        a[k]=a[i_min_a];
-        a[i_min_a]=c;
+    for (int i = 1; i < n; i++) {
+        int key = a[i];
+        int j = i - 1;
+        while (j >= 0 && a[j] > key) {
+            a[j + 1] = a[j];
+            j--;
+        }
+        a[j + 1] = key;
     }
 }
 

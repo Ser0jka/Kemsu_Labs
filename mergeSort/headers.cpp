@@ -13,60 +13,117 @@ void f(int *a,int n,int b,int c){
 }
 
 void f_sort(int *a,int n){
-    int c,i_min_a;
-    for(int k=0;k<n;k++){
-        i_min_a=k;
-
-        for(int i=k+1;i<n;i++){
-            if( a[i] < a[i_min_a] ){
-                i_min_a=i;
-            } 
-        }  
-
-        c=a[k];
-        a[k]=a[i_min_a];
-        a[i_min_a]=c;
+    for (int i = 1; i < n; i++) {
+        int key = a[i];
+        int j = i - 1;
+        while (j >= 0 && a[j] > key) {
+            a[j + 1] = a[j];
+            j--;
+        }
+        a[j + 1] = key;
     }
 }
 
+
+// void mergeSort(int* a, int n){
+//     int mid = n / 2;
+
+//     int k1 = 0;
+//     int k2 = mid;
+
+//     while (k1 < mid && k2 < n){
+//         if (a[k1] <= a[k2]){
+//             k1 += 1;
+//         }
+//         else{
+//             // int temp = a[k2];
+//             // for (int i = k2; i > k1; i--) {
+//             //     a[i] = a[i - 1];
+//             // }
+//             // a[k1] = temp;
+//             // k1++;
+//             // k2++;
+//             // mid++; 
+
+//             // std::rotate(a + k1, a + k2, a + k2 + 1);
+//             // k1++;
+//             // k2++;
+//             // mid++; 
+
+//             int temp = a[k1];
+//             a[k1] = a[k2];
+//             int j = k2;
+//             while (j < n - 1 && temp > a[j + 1]) {
+//                 a[j] = a[j + 1];
+//                 j++;
+//             }
+//             a[j] = temp;
+//             k1++;
+//         }
+//     }
+// }
+
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
 void mergeSort(int* a, int n){
-    int mid = n / 2;
 
+    int mid = n / 2;
     int k1 = 0;
     int k2 = mid;
+    int k3 = -1;
+    bool k3_on = false;
 
-    while (k1 < mid && k2 < n){
+    if (a[mid - 1] <= a[mid]) {
+        return; 
+    }
+
+    if (n < 16) {
+        f_sort(a, n);
+        return;
+    }
+
+    while (k1 < mid && k2 < n && k3 != k2 - 1){
         if (a[k1] <= a[k2]){
-            k1 += 1;
-        }
-        else{
-            // int temp = a[k2];
-            // for (int i = k2; i > k1; i--) {
-            //     a[i] = a[i - 1];
-            // }
-            // a[k1] = temp;
-            // k1++;
-            // k2++;
-            // mid++; 
-
-            // std::rotate(a + k1, a + k2, a + k2 + 1);
-            // k1++;
-            // k2++;
-            // mid++; 
-
-            int temp = a[k1];
-            a[k1] = a[k2];
-            int j = k2;
-            while (j < n - 1 && temp > a[j + 1]) {
-                a[j] = a[j + 1];
-                j++;
-            }
-            a[j] = temp;
             k1++;
         }
+        else{
+            k3 = k2;
+            k2++;
+        }
+    }
+
+    if (k3 != -1) {
+        while (k1 < mid) {
+            bool k2_valid = (k2 < n);
+            
+            if (!k2_valid || a[k3] <= a[k2]) {
+                if (a[k1] <= a[k3]) {
+                    k1++;
+                } else {
+                    swap(&a[k1], &a[k3]);
+                    k1++;
+                    k3_on = true;
+                }
+            } 
+            else {
+                if (a[k1] <= a[k2]) {
+                    k1++;
+                } else {
+                    swap(&a[k1], &a[k2]);
+                    k1++;
+                    k2++;
+                    k3_on = true;
+                }
+            }
+        }
+
+        if(k3_on){
+            mergeSort(a + mid, n - mid); 
+        }
+        
     }
 }
-
-
-
